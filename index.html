@@ -1,0 +1,44 @@
+<html>
+<H1> Finding and Needle in HayStack </H1>
+<body>
+This program is used to find all the instances of a given pattern within a given input , the input is a String. This can be reffered to as finding a needle in a haystack. 
+The needle – the pattern that needs to be searched within the input string
+Haystack – is the given input string
+
+The findNeedles() is a method that will count the number of instances  of the given pattern. It will let us know how many times the pattern will appear in the given input string.
+
+Both the search pattern and the input string is taken as an input from the user.The method will then itrate and count the number of times each pattern appear in the given input string.
+
+public static void findNeedles(String haystack, String[] needles){
+  if(needles.length > 5){
+      System.err.println("Too many words!");
+  }
+
+There are few ways to improve the code. We can allow the method to return as it will help us test the method effectively. Currently the method is only printing, but we can modify the method to return countArray.
+
+
+You can use an exception rather than printing an error, as the exception will You cannot ignore an exception through inaction, the exception will allow you to execute the function until it becomes visible.
+
+Here you can split the given input string outside the loop. As this way the split will take place only once rather the split taking place each time the loop itrates. This makes the method faster and reduces memory usage.
+
+  else{
+      int[] countArray = new int[needles.length];
+      for(int i = 0; i < needles.length; i++){
+          String[] words = haystack.split("[ \"\'\t\n\b\f\r]", 0);
+          for(int j = 0; j < words.length; j++){
+              if(words[j].compareTo(needles[i]) == 0){
+                  countArray[i]++;
+              }
+          }
+      }
+      for (int j = 0; j < needles.length; j++) {
+          System.out.println(needles[j] + ": " + countArray[j]);
+      }
+  }
+}
+
+
+Finally, instead of looping over the entire haystack and checking to see if your “needle” is found, the most efficient way is to store the needles is to use a HashMap and run through the haystack once, incrementing the value associated with the key (in this case, the needle) each time an instance is found.
+
+</body>
+</html>
