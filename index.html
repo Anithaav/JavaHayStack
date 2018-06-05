@@ -13,8 +13,11 @@ Both the search pattern and the input string is taken as an input from the user.
   </n>
 </n>
 <p>
+  
+  
 public static void findNeedles(String haystack, String[] needles){
-  if(needles.length > 5){
+  if(needles.length > 5)
+  {
       System.err.println("Too many words!");
   }
   
@@ -30,17 +33,25 @@ You can use an exception rather than printing an error, as the exception will Yo
 
 Here you can split the given input string outside the loop. As this way the split will take place only once rather the split taking place each time the loop itrates. This makes the method faster and reduces memory usage.
 
-  else{
+  else
+  {
       int[] countArray = new int[needles.length];
-      for(int i = 0; i < needles.length; i++){
-          String[] words = haystack.split("[ \"\'\t\n\b\f\r]", 0);
-          for(int j = 0; j < words.length; j++){
-              if(words[j].compareTo(needles[i]) == 0){
+
+      for(int i = 0; i < needles.length; i++)
+      {
+        String[] words = haystack.split("[ \"\'\t\n\b\f\r]", 0);
+        
+          for(int j = 0; j < words.length; j++)
+          {
+              if(words[j].compareTo(needles[i]) == 0)
+              {
                   countArray[i]++;
               }
           }
       }
-      for (int j = 0; j < needles.length; j++) {
+        
+      for (int j = 0; j < needles.length; j++) 
+      {
           System.out.println(needles[j] + ": " + countArray[j]);
       }
   }
@@ -49,5 +60,37 @@ Here you can split the given input string outside the loop. As this way the spli
 
 Finally, instead of looping over the entire haystack and checking to see if your “needle” is found, the most efficient way is to store the needles is to use a HashMap and run through the haystack once, incrementing the value associated with the key (in this case, the needle) each time an instance is found.
 
+        
+        
+        
+public static int[] findNeedles(String haystack, String[] needles)
+{
+   int[] countArray = new int[needles.length];
+   if(needles.length > 5) 
+   {
+       throw new RuntimeException("Must provide fewer than 5 arguments.");
+   }
+   else
+   {
+       String[] words = haystack.split("[ \"\'\t\n\b\f\r]", 0);
+       for(int i = 0; i < needles.length; i++)
+       {
+           for(int j = 0; j < words.length; j++)
+           {
+               if(words[j].compareTo(needles[i]) == 0)
+               {
+                   countArray[i]++;
+               }
+           }
+       }
+       for (int j = 0; j < needles.length; j++) 
+       {
+           System.out.println(needles[j] + ": " + countArray[j]);
+       }
+   }
+   return countArray;
+}
+        
+        
 </body>
 </html>
